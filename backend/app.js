@@ -17,7 +17,7 @@ const app = express();
 app.use(morgan('dev'));
 
 app.use(cookieParser());
-app.unsubscribe(express.json());
+app.use(express.json());
 
 //Security Middleware
 if (!isProduction) {
