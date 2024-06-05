@@ -1,7 +1,6 @@
 const { validationResult } = require('express-validator');
 const { check } = require('express-validator');
 const { Spot, Review, User, Booking } = require('../db/models');
-const { parseInt } = require('lodash');
 
 const handleValidationErrors = (req, _res, next) => {
     const validationErrors = validationResult(req);
@@ -21,7 +20,6 @@ const handleValidationErrors = (req, _res, next) => {
 };
 
 const validateLogin = [
-
     check('credential')
         .exists({ checkFalsy: true })
         .notEmpty()
