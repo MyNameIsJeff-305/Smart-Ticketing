@@ -3,11 +3,13 @@ const bcrypt = require('bcryptjs');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
+const { validateSignup} = require('../../utils/validations');
 
 const router = express.Router();
 
 //Routes___________________________________
-router.post('/', async(req, res) => {
+//Signup
+router.post('/', validateSignup, async(req, res) => {
     const { email, password, username } = req.body;
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({ email, username, hashedPassword });
