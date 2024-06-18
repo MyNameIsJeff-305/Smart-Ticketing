@@ -39,7 +39,7 @@ router.post('/', validateSignup, async (req, res) => {
                     errors: {
                         username: "User with that username already exists"
                     }
-                })
+                });
         }
 
         const { email, password, username, firstName, lastName } = req.body;
