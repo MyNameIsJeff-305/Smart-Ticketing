@@ -1,11 +1,13 @@
 'use strict';
-
-const { Model, Validator } = require('sequelize');
+const {
+  Model,
+  Validator,
+} = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Employee extends Model {
     static associate(models) {
-      // define association here
+    
     }
   };
 
