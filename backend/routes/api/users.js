@@ -18,13 +18,14 @@ router.post('/', validateSignup, async (req, res) => {
         });
 
         for (const user of userEmail) {
-            if (user.email === req.body.email)
+            if (user.email === req.body.email) {
                 return res.status(500).json({
                     message: "User already exists",
                     errors: {
                         email: "User with that email already exists"
                     }
                 });
+            }
         }
 
         const userUsername = await User.findAll({

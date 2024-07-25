@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 const { check } = require('express-validator');
-const { Spot, Review, User, Booking } = require('../db/models');
+const { Spot, Review, Employee, Booking } = require('../db/models');
 
 const handleValidationErrors = (req, _res, next) => {
     const validationErrors = validationResult(req);

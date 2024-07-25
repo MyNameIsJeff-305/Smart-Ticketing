@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User } = require('../db/models');
+const { Employee } = require('../db/models');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -43,7 +43,7 @@ const restoreUser = (req, res, next) => {
 
         try {
             const { id } = jwtPayload.data;
-            req.user = await User.findByPk(id, {
+            req.user = await Employee.findByPk(id, {
                 attributes: {
                     include: ['email', 'createdAt', 'updatedAt']
                 }
