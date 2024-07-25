@@ -1,71 +1,61 @@
 'use strict';
 const {
-  Model,
-  Validator,
+  Model
 } = require('sequelize');
-
 module.exports = (sequelize, DataTypes) => {
-
-  class User extends Model {
+  class Customer extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-
+      // define association here
     }
   }
-  User.init({
+  Customer.init({
+    type: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      validate: {
+        len: [0, 50]
+      }
+    },
     firstName: {
       allowNull: false,
       type: DataTypes.STRING,
-      // validate: {
-      //   isEmail: false
-      // }
+      validate: {
+        len: [0, 50]
+      }
     },
     lastName: {
       allowNull: false,
       type: DataTypes.STRING,
-      // validate: {
-      //   isEmail: false
-      // }
+      validate: {
+        len: [0, 50]
+      }
+    },
+    companyName: {
+      allowNull: false,
+      type: DataTypes.STRING,
+      validate: {
+        len: [0, 50]
+      }
+    },
+    phoneNumber: {
+      allowNull: false,
+      type: DataTypes.STRING
     },
     email: {
+      allowNull: false,
       type: DataTypes.STRING,
-      allowNull: false,
       validate: {
-        len: [3, 256],
-        isEmail: true
-      }
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [4, 30],
-      }
-    },
-    roleId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 1
-    },
-    hashedPassword: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [60, 60]
+        len: [0, 50]
       }
     }
   }, {
     sequelize,
-    modelName: 'User',
-    defaultScope: {
-      attributes: {
-        exclude: ['hashedPassword', 'createdAt', 'updatedAt']
-      }
-    }
+    modelName: 'Customer',
   });
-  return User;
+  return Customer;
 };
