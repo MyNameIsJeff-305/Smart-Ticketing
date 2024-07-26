@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Tag extends Model {
 
     static associate(models) {
-      Tag.belongsToMany(
+      Tag.belongsTo(
         models.Ticket,
         { foreignKey: "ticketId", onDelete: 'CASCADE' }
       )
@@ -34,6 +34,12 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       },
       onDelete: 'CASCADE'
+    },
+    color: {
+      type: DataTypes.STRING,
+      validate: {
+        len: [0, 7]
+      }
     }
   }, {
     sequelize,

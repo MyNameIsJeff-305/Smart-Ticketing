@@ -27,6 +27,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      color: {
+        allowNull: false,
+        defaultValue: '#f7f7f7',
+        type: Sequelize.STRING(7)
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

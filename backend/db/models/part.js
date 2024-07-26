@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Part extends Model {
 
     static associate(models) {
-      Part.belongsToMany(
+      Part.belongsTo(
         models.Ticket,
         { foreignKey: 'ticketId', onDelete: 'CASCADE' }
       ),

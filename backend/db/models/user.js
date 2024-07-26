@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         { foreignKey: 'employeeId', onDelete: 'CASCADE' }
       ),
         User.hasMany(
-          models.Tickets,
+          models.Ticket,
           { foreignKey: 'technician', onDelete: 'CASCADE' }
         ),
         User.belongsTo(

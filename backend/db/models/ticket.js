@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         { foreignKey: 'technician', onDelete: 'CASCADE' }
       ),
         Ticket.hasMany(
-          models.Tags,
+          models.Tag,
           { foreignKey: 'ticketId', onDelete: 'CASCADE' }
         ),
         Ticket.hasMany(
