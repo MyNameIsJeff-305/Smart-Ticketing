@@ -14,7 +14,19 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await Tag.bulkCreate([
       {
-        name: "Installation"
+        name: "Installation",
+        description: "All general Installation Tickets",
+        color: '#09F4A6'
+      },
+      {
+        name: "Assessment",
+        description: "All general Assessment Tickets",
+        color: '#F0F4A6'
+      },
+      {
+        name: "TroubleShooting",
+        description: "All general TroubleShooting Tickets",
+        color: '#F409A6'
       }
     ])
   },
@@ -23,8 +35,8 @@ module.exports = {
     options.tableName = 'Tags';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      username: {
-        [Op.in]: []
+      name: {
+        [Op.in]: ["Installation", "Assessment", "TroubleShooting"]
       }
     }, {});
   }

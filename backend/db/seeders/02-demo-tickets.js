@@ -55,7 +55,7 @@ module.exports = {
         checkIn: new Date(2024, 5, 20),
         checkOut: new Date(2024, 5, 11),
         name: "Assessment on South Beach Dentistry",
-      },
+      }
     ], options)
   },
 
@@ -63,7 +63,7 @@ module.exports = {
     options.tableName = 'Tickets';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      username: {
+      name: {
         [Op.in]: ["Installation in Dental Design", "TroubleShooting of Network in AA Glass",
           "Stations Repair in Dental Design", "Technical Support in AA Glass", "Assessment on South Beach Dentistry"]
       }

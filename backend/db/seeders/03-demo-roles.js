@@ -32,7 +32,7 @@ module.exports = {
     options.tableName = 'Roles';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      username: {
+      name: {
         [Op.in]: ['Admin', 'Technician', 'Desk Support']
       }
     }, {});
