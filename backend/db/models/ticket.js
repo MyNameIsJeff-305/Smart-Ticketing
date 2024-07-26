@@ -4,13 +4,24 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Ticket extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
     static associate(models) {
-      // define association here
+      Ticket.belongsTo(
+        models.User,
+        { foreignKey: 'technician', onDelete: 'CASCADE' }
+      ),
+        Ticket.hasMany(
+          models.Tags,
+          { foreignKey: 'ticketId', onDelete: 'CASCADE' }
+        ),
+        Ticket.hasMany(
+          models.Part,
+          { foreignKey: "ticketId", onDelete: 'CASCADE' }
+        ),
+        Ticket.belongsTo(
+          models.Customer,
+          { foreignKey: 'customerId', onDelete: 'CASCADE' }
+        )
     }
   }
   Ticket.init({
@@ -20,7 +31,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     customerId: {
       allowNull: false,
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Customers',
+        key: 'id'
+      },
+      onDelete: 'CASCADE'
     },
     jobDescription: {
       type: DataTypes.STRING,
@@ -31,6 +47,11 @@ module.exports = (sequelize, DataTypes) => {
     technician: {
       allowNull: false,
       type: DataTypes.INTEGER,
+      references: {
+        model: 'Users',
+        key: 'id',
+      },
+      onDelete: 'CASCADE'
     },
     checkIn: {
       allowNull: false,
