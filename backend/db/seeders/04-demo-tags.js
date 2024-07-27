@@ -28,7 +28,7 @@ module.exports = {
         description: "All general TroubleShooting Tickets",
         color: '#F409A6'
       }
-    ])
+    ], options)
   },
 
   async down(queryInterface, Sequelize) {

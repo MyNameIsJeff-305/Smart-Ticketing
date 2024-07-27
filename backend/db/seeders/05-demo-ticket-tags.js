@@ -33,7 +33,7 @@ module.exports = {
         tagId: 1,
         ticketId: 3
       },
-    ])
+    ], options)
   },
 
   async down(queryInterface, Sequelize) {

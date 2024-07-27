@@ -45,7 +45,6 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 1
     },
     ticketId: {
-      allowNull: false,
       type: DataTypes.INTEGER,
       references: {
         model: 'Tickets',
