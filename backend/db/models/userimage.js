@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   UserImage.init({
     url: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(255),
       defaultValue: "img/placeholder-profile.png"
     },
     userId: {
