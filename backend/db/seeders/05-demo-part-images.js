@@ -1,6 +1,6 @@
 'use strict';
 
-const { PartImage } = require('../models');
+const { PartImage } = require('../models/');
 
 let options = {};
 options.tableName = 'PartImages'
