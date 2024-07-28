@@ -18,7 +18,7 @@ module.exports = {
       },
       url: {
         allowNull: false,
-        type: Sequelize.STRING(50)
+        type: Sequelize.STRING
       },
       userId: {
         allowNull: false,

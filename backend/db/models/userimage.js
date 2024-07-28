@@ -15,8 +15,12 @@ module.exports = (sequelize, DataTypes) => {
   UserImage.init({
     url: {
       allowNull: false,
-      type: DataTypes.STRING(255),
-      defaultValue: "img/placeholder-profile.png"
+      type: DataTypes.STRING,
+      defaultValue: "img/placeholder-profile.png",
+      validate: {
+        isUrl: true,
+        len: [12, 200] //12 is the less possible amount of characters that a URL may have
+      }
     },
     userId: {
       allowNull: false,
