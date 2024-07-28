@@ -18,11 +18,20 @@ module.exports = {
       },
       partId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Parts",
+          key: 'id',
+        },
+        onDelete: 'CASCADE'
       },
       ticketId: {
-        allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Tickets',
+          key: 'id',
+        },
+        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,

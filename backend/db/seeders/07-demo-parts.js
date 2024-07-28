@@ -12,13 +12,13 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    Part.bulkCreate([
+    await Part.bulkCreate([
       {
         name: "24-port Switch",
         sku: "24PSWTCH",
         description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         unitPrice: 48.50,
-        quantity: 2,
+        // quantity: 2,
         ticketId: 1
       },
       {
@@ -26,18 +26,25 @@ module.exports = {
         sku: "NTGTFRW",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         unitPrice: 348.50,
-        quantity: 1,
+        // quantity: 1,
         ticketId: 1
       },
-    ])
+      {
+        name: "Riser UTP Cable",
+        sku: "ADIRC",
+        description: "ADI PRO Cat 6 Riser Cable is UL certified and features 23 AWG with 4 solid bare annealed copper conductor-pairs. Our wire is fully tested to exceed industry standards to satisfy the need for present and future networks in the market. Also available in other colors.",
+        unitPrice: 35.50,
+        ticketId: 2
+      }
+    ], options)
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    options.tableName = "Parts";
+    return queryInterface.bulkDelete(options, {
+      name: {
+        [Op.in]: ["NetGate Firewall", "24-port Switch"]
+      }
+    }, {});
   }
 };

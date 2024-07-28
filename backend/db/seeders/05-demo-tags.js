@@ -16,17 +16,17 @@ module.exports = {
       {
         name: "Installation",
         description: "All general Installation Tickets",
-        color: '#09F4A6'
+        // color: '#09F4A6'
       },
       {
         name: "Assessment",
         description: "All general Assessment Tickets",
-        color: '#F0F4A6'
+        // color: '#F0F4A6'
       },
       {
         name: "TroubleShooting",
         description: "All general TroubleShooting Tickets",
-        color: '#F409A6'
+        // color: '#F409A6'
       }
     ], options)
   },

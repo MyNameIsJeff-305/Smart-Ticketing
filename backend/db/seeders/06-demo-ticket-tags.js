@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    TicketTag.bulkCreate([
+    await TicketTag.bulkCreate([
       {
         tagId: 1,
         ticketId: 1

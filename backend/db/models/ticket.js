@@ -16,10 +16,12 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: 'ticketId',
           otherKey: 'tagId',
         }),
-        Ticket.hasMany(
-          models.Part,
-          { foreignKey: "ticketId", onDelete: 'CASCADE' }
-        ),
+        Ticket.belongsToMany(
+          models.Part,{
+          through: 'TicketParts',
+          foreignKey: 'ticketId',
+          otherKey: 'partId'
+        }),
         Ticket.belongsTo(
           models.Customer,
           { foreignKey: 'customerId', onDelete: 'CASCADE' }

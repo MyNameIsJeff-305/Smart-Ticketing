@@ -4,18 +4,28 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class TicketPart extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
     static associate(models) {
       // define association here
     }
   }
   TicketPart.init({
-    partId: DataTypes.INTEGER,
-    ticketId: DataTypes.INTEGER
+    partId: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Parts',
+        key: 'id'
+      }
+    },
+    ticketId: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Tickets',
+        key: 'id',
+      },
+    },
   }, {
     sequelize,
     modelName: 'TicketPart',

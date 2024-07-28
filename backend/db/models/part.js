@@ -6,10 +6,12 @@ module.exports = (sequelize, DataTypes) => {
   class Part extends Model {
 
     static associate(models) {
-      Part.belongsTo(
-        models.Ticket,
-        { foreignKey: 'ticketId', onDelete: 'CASCADE' }
-      ),
+      Part.belongsToMany(
+        models.Ticket, {
+          through: 'TicketParts',
+          foreignKey: 'partId',
+          otherKey: 'ticketId'
+        }),
         Part.hasOne(
           models.PartImage,
           { foreignKey: 'partId', onDelete: 'CASCADE' }
@@ -38,11 +40,6 @@ module.exports = (sequelize, DataTypes) => {
     unitPrice: {
       allowNull: false,
       type: DataTypes.FLOAT
-    },
-    quantity: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      defaultValue: 1
     },
     ticketId: {
       type: DataTypes.INTEGER,

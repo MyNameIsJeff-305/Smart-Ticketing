@@ -23,13 +23,9 @@ module.exports = {
       description: {
         type: Sequelize.STRING
       },
-      ticketId: {
-        allowNull: false,
-        type: Sequelize.INTEGER
-      },
       color: {
         allowNull: false,
-        defaultValue: '#f7f7f7',
+        defaultValue: "#e40414",
         type: Sequelize.STRING(7)
       },
       createdAt: {

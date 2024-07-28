@@ -31,11 +31,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT
       },
-      quantity: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        defaultValue: 1
-      },
       ticketId: {
         type: Sequelize.INTEGER
       },

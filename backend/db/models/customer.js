@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     firstName: {
       allowNull: false,
+      defaultValue: "-",
       type: DataTypes.STRING,
       validate: {
         len: [0, 50]
@@ -33,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     lastName: {
       allowNull: false,
+      defaultValue: "-",
       type: DataTypes.STRING,
       validate: {
         len: [0, 50]
@@ -40,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     companyName: {
       allowNull: false,
+      defaultValue: "-",
       type: DataTypes.STRING,
       validate: {
         len: [0, 50]

@@ -23,25 +23,15 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     description: {
+      defaultValue: "",
       type: DataTypes.STRING,
       validate: {
         len: [0, 500]
       }
     },
-    ticketId: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Tickets',
-        key: 'id'
-      },
-      onDelete: 'CASCADE'
-    },
     color: {
+      allowNull:false,
       type: DataTypes.STRING,
-      validate: {
-        len: [0, 7]
-      }
     }
   }, {
     sequelize,
