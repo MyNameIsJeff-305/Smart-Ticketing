@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.belongsTo(
         models.UserImage,
-        { foreignKey: 'employeeId', onDelete: 'CASCADE' }
+        { foreignKey: 'userId', onDelete: 'CASCADE' }
       ),
         User.hasMany(
           models.Ticket,
