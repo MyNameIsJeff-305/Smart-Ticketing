@@ -8,10 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Part.belongsToMany(
         models.Ticket, {
-          through: 'TicketParts',
-          foreignKey: 'partId',
-          otherKey: 'ticketId'
-        }),
+        through: 'TicketParts',
+        foreignKey: 'partId',
+        otherKey: 'ticketId'
+      }),
         Part.hasOne(
           models.PartImage,
           { foreignKey: 'partId', onDelete: 'CASCADE' }
@@ -46,9 +46,9 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: 'Tickets',
         key: 'id'
-      }
+      },
+      onDelete: 'CASCADE'
     },
-    onDelete: 'CASCADE'
   }, {
     sequelize,
     modelName: 'Part',
