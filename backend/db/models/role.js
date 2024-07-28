@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Role.belongsTo(
         models.User,
-        { foreignKey: 'id', onDelete: 'CASCADE' }
+        { foreignKey: 'roleId', onDelete: 'CASCADE' }
       )
     }
   }
@@ -27,5 +27,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Role',
   });
+
   return Role;
 };
