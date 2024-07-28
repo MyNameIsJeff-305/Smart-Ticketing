@@ -7,13 +7,20 @@ const {
 module.exports = (sequelize, DataTypes) => {
 
   class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
 
+    static associate(models) {
+      User.belongsTo(
+        models.UserImage,
+        { foreignKey: 'employeeId', onDelete: 'CASCADE' }
+      ),
+        User.hasMany(
+          models.Ticket,
+          { foreignKey: 'technician', onDelete: 'CASCADE' }
+        ),
+        User.belongsTo(
+          models.Role,
+          { foreignKey: 'roleId', onDelete: "CASCADE" }
+        )
     }
   }
   User.init({
@@ -45,6 +52,16 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [4, 30],
       }
+    },
+    roleId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
+      references: {
+        model: 'Roles',
+        key: 'id'
+      },
+      onDelete: "CASCADE"
     },
     hashedPassword: {
       type: DataTypes.STRING,

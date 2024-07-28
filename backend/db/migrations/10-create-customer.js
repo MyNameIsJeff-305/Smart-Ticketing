@@ -2,44 +2,43 @@
 /** @type {import('sequelize-cli').Migration} */
 
 let options = {};
-options.tableName = 'Users';
+options.tableName = 'Customers';
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Customers', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      type: {
+        allowNull: false,
+        type: Sequelize.STRING(50)
+      },
       firstName: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(50)
       },
       lastName: {
         allowNull: false,
+        type: Sequelize.STRING(50)
+      },
+      companyName: {
+        allowNull: false,
+        type: Sequelize.STRING(50)
+      },
+      phoneNumber: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      username: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       email: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      roleId: {
         allowNull: false,
-        type: Sequelize.INTEGER,
-        defaultValue: 1
-      },
-      hashedPassword: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.STRING(50)
       },
       createdAt: {
         allowNull: false,
@@ -54,7 +53,7 @@ module.exports = {
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = "Users"
-    return queryInterface.dropTable(options);
+    options.tableName = 'Customers'
+    await queryInterface.dropTable(options);
   }
 };

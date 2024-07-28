@@ -2,44 +2,37 @@
 /** @type {import('sequelize-cli').Migration} */
 
 let options = {};
-options.tableName = 'Users';
+options.tableName = 'Parts';
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Parts', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      name: {
+        allowNull: false,
+        type: Sequelize.STRING(50)
+      },
+      sku: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      lastName: {
+      description: {
+        type: Sequelize.STRING(500)
+      },
+      unitPrice: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.FLOAT
       },
-      username: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      roleId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        defaultValue: 1
-      },
-      hashedPassword: {
-        type: Sequelize.STRING,
-        allowNull: false
+      ticketId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -54,7 +47,7 @@ module.exports = {
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = "Users"
-    return queryInterface.dropTable(options);
+    options.tableName = "Parts"
+    await queryInterface.dropTable(options);
   }
 };
