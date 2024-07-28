@@ -25,7 +25,7 @@ module.exports = {
         name: 'Desk Support',
         description: 'Perform on-site installations and troubleshooting.'
       },
-    ], options)
+    ], options);
   },
 
   async down(queryInterface, Sequelize) {
