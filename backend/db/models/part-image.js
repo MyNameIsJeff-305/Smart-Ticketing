@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING,
       validate: {
-        isUrl: true
+        isUrl: true,
+        len: [12, 200] //12 is the less possible amount of characters that a URL may have
       }
     },
     partId: {
