@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Role extends Model {
 
     static associate(models) {
-      Role.hasMany(
+      Role.belongsTo(
         models.User,
         { foreignKey: 'roleId', onDelete: 'CASCADE' }
       )

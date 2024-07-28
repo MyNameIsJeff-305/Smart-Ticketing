@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
 
     static associate(models) {
-      User.belongsTo(
+      User.hasOne(
         models.UserImage,
         { foreignKey: 'userId', onDelete: 'CASCADE' }
       ),
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
           models.Ticket,
           { foreignKey: 'technician', onDelete: 'CASCADE' }
         ),
-        User.belongsTo(
+        User.hasOne(
           models.Role,
           { foreignKey: 'roleId', onDelete: "CASCADE" }
         )
