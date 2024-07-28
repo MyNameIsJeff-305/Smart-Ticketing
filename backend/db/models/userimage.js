@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       UserImage.hasOne(
         models.User,
-        { foreignKey: 'employeeId', nonDelete: 'CASCADE' }
+        { foreignKey: 'userId', nonDelete: 'CASCADE' }
       )
     }
   }
