@@ -18,7 +18,6 @@ module.exports = {
         email: "admin@user.io",
         username: "Admin",
         hashedPassword: bcrypt.hashSync('password'),
-        roleId: 1
       },
       {
         firstName: "El Flaco",
@@ -26,7 +25,6 @@ module.exports = {
         email: 'demo@user.io',
         username: 'ElFlaco',
         hashedPassword: bcrypt.hashSync('password'),
-        roleId: 2
       },
       {
         firstName: "Flautin",
@@ -34,7 +32,6 @@ module.exports = {
         email: 'user1@user.io',
         username: 'Flautin',
         hashedPassword: bcrypt.hashSync('password2'),
-        roleId: 3
       },
       {
         firstName: "Alex",

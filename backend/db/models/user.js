@@ -17,9 +17,12 @@ module.exports = (sequelize, DataTypes) => {
           models.Ticket,
           { foreignKey: 'technician', onDelete: 'CASCADE' }
         ),
-        User.hasOne(
-          models.Role,
-          { foreignKey: 'roleId', onDelete: "CASCADE" }
+        User.belongsToMany(
+          models.Role, {
+            through: 'UserRoles',
+            foreignKey: 'userId',
+            otherKey: 'roleId'
+          }
         )
     }
   }
