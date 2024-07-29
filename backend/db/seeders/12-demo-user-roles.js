@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await Location.bulkCreate([
+    await UserRole.bulkCreate([
       {
         roleId: 1,
         userId: 1
