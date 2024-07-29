@@ -39,7 +39,7 @@ module.exports = {
         zipCode: "33175",
         customerId: 2
       },
-    ])
+    ], options)
   },
 
   async down(queryInterface, Sequelize) {
