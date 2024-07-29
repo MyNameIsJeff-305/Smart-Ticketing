@@ -18,7 +18,7 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING(50)
+        type: Sequelize.TEXT
       },
       customerId: {
         allowNull: false,
@@ -26,22 +26,22 @@ module.exports = {
       },
       addressLine1: {
         allowNull: false,
-        type: Sequelize.STRING(100)
+        type: Sequelize.TEXT
       },
       addressLine2: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.TEXT
       },
       city: {
         allowNull: false,
-        type: Sequelize.STRING(50)
+        type: Sequelize.TEXT
       },
       state: {
         allowNull: false,
-        type: Sequelize.STRING(50)
+        type: Sequelize.TEXT
       },
       zipCode: {
         allowNull: false,
-        type: Sequelize.STRING(5)
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

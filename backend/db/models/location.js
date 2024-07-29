@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   Location.init({
     name: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       validate: {
         len: [0, 50]
       }
@@ -31,34 +31,34 @@ module.exports = (sequelize, DataTypes) => {
     },
     addressLine1: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       validate: {
         len: [0, 100]
       }
     },
     addressLine2: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       validate: {
         len: [0, 100]
       }
     },
     city: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       validate: {
         len: [0, 50]
       }
     },
     state: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       validate: {
         len: [0, 50]
       }
     },
     zipCode: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       validate: {
         len: [0, 5]
       }
