@@ -24,6 +24,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
+      locationId: {
+          allowNull: false,
+          type: Sequelize.INTEGER
+      },
       jobDescription: {
         type: Sequelize.STRING(500)
       },
