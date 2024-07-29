@@ -18,10 +18,10 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.CHAR
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.CHAR
       },
       createdAt: {
         allowNull: false,
