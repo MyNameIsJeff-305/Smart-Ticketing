@@ -15,13 +15,13 @@ module.exports = (sequelize, DataTypes) => {
   Role.init({
     name: {
       allowNull: false,
-      type: DataTypes.CHAR,
+      type: DataTypes.TEXT,
       // validate: {
       //   len: [0, 50]
       // }
     },
     description: {
-      type: DataTypes.CHAR
+      type: DataTypes.TEXT
     }
   }, {
     sequelize,
