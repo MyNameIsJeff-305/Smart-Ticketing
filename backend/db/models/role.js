@@ -8,11 +8,11 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Role.belongsTo(
         models.User,
-        { foreignKey: 'roleId', onDelete: 'CASCADE' }
+        { foreignKey: 'id', onDelete: 'CASCADE' }
       )
     }
   }
-  
+
   Role.init({
     name: {
       allowNull: false,
