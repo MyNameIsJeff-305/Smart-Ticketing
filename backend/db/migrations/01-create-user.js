@@ -32,11 +32,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      roleId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        // defaultValue: 2
-      },
       hashedPassword: {
         type: Sequelize.STRING,
         allowNull: false

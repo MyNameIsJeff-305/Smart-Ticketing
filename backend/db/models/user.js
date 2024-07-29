@@ -56,16 +56,6 @@ module.exports = (sequelize, DataTypes) => {
         len: [4, 30],
       }
     },
-    roleId: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      // defaultValue: 1,
-      references: {
-        model: 'Roles',
-        key: 'id'
-      },
-      onDelete: "CASCADE"
-    },
     hashedPassword: {
       type: DataTypes.STRING,
       allowNull: false,
