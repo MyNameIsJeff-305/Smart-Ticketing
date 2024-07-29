@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
   PartImage.init({
     url: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(200),
+      unique: true,
       validate: {
         isUrl: true,
         len: [12, 200] //12 is the less possible amount of characters that a URL may have
@@ -26,11 +27,11 @@ module.exports = (sequelize, DataTypes) => {
     partId: {
       allowNull: false,
       type: DataTypes.INTEGER,
-      references: {
-        model: 'Parts',
-        key: 'id'
-      },
-      onDelete: 'CASCADE'
+      // references: {
+      //   model: 'Parts',
+      //   key: 'id'
+      // },
+      // onDelete: 'CASCADE'
     }
   }, {
     sequelize,

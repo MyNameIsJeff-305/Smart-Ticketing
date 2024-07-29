@@ -1,6 +1,6 @@
 'use strict';
 
-const { PartImage } = require('../models/');
+const { PartImage } = require('../models');
 
 let options = {};
 options.tableName = 'PartImages'
@@ -29,10 +29,6 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
     options.tableName = "PartImages";
-    return queryInterface.bulkDelete(options, {
-      partId: {
-        [Op.in]: [1, 2, 3]
-      }
-    }, {});
+    return queryInterface.bulkDelete(options, {}, {});
   }
 };
