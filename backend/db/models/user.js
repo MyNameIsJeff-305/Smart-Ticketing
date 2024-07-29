@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
           models.Ticket,
           { foreignKey: 'technician', onDelete: 'CASCADE' }
         ),
-        User.hasMany(
+        User.hasOne(
           models.Role,
           { foreignKey: 'roleId', onDelete: "CASCADE" }
         )
@@ -57,11 +57,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.INTEGER,
       // defaultValue: 1,
-      // references: {
-      //   model: 'Roles',
-      //   key: 'id'
-      // },
-      // onDelete: "CASCADE"
+      references: {
+        model: 'Roles',
+        key: 'id'
+      },
+      onDelete: "CASCADE"
     },
     hashedPassword: {
       type: DataTypes.STRING,
