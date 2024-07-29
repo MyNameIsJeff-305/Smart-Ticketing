@@ -9,7 +9,7 @@ const { validateLogin } = require('../../utils/validations');
 const router = express.Router();
 
 // Log in
-router.post('/', validateLogin, async (req, res, next) => {
+router.post('/', validateLogin, async (req, res, _next) => {
     const { credential, password } = req.body;
 
     const user = await User.unscoped().findOne({

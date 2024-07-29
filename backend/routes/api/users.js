@@ -8,6 +8,19 @@ const { validateSignup } = require('../../utils/validations');
 const router = express.Router();
 
 //Routes___________________________________
+
+//Get the Current User
+router.get('/me', requireAuth, async (req, res, next) => {
+    try {
+        const currentUser = await User.findByPk(parseInt(req.user.id));
+
+        res.json({ user: currentUser } || { "user": null });
+    } catch (error) {
+        next(error);
+    }
+});
+
+
 //Signup
 router.post('/', validateSignup, async (req, res) => {
     try {
