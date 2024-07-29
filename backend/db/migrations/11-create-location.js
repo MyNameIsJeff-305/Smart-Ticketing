@@ -30,7 +30,6 @@ module.exports = {
       },
       addressLine2: {
         type: Sequelize.STRING(100),
-        defaultValue: ""
       },
       city: {
         allowNull: false,
