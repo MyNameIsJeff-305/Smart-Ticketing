@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'partId',
         otherKey: 'ticketId'
       }),
-        Part.hasMany(
+        Part.hasOne(
           models.PartImage,
           { foreignKey: 'partId', onDelete: 'CASCADE' }
         )
