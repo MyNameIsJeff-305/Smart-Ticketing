@@ -2,8 +2,8 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
-const { validateSignup } = require('../../utils/validations');
+const { User, } = require('../../db/models');
+const { validateSignup, checkRole } = require('../../utils/validations');
 
 const router = express.Router();
 
@@ -82,6 +82,44 @@ router.post('/', validateSignup, async (req, res) => {
         });
     } catch (error) {
         next(error)
+    }
+});
+
+//Change the role of a user
+router.put('/:userId', requireAuth, checkRole('Admin'), async (req, res, next) => {
+    try {
+        const user = await User.findByPk(req.params.userId);
+
+        if (!user) {
+            res.status(404).json({ message: 'User not found' });
+        }
+
+        const updatedUser = await user.update({ roleId: req.body.roleId });
+
+        res.json({ user: updatedUser });
+    } catch (error) {
+        
+    }
+});
+
+//Edit User
+router.put('/:userId', requireAuth, checkRole('Admin'), async (req, res, next) => {
+    try {
+        const user = await User.findByPk(parseInt(req.params.userId));
+
+        if(!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const { email, username, firstName, lastName } = req.body;
+
+        user.email = email;
+        user.username = username;
+        user.firstName = firstName;
+        user.lastName = lastName;
+
+    } catch (error) {
+        
     }
 });
 
