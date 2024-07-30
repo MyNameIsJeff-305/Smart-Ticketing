@@ -196,4 +196,22 @@ router.put('/:ticketId', requireAuth, validateTicket, async (req, res, next) => 
     }
 });
 
+//Delete a Ticket
+router.delete('/:ticketId', requireAuth, async (req, res, next) => {
+    try {
+        const ticket = await Ticket.findByPk(parseInt(req.params.ticketId));
+
+        if (!ticket) {
+            return res.status(404).json({ message: "Ticket Cannot Be Found" });
+        }
+
+        await ticket.destroy();
+
+        res.json({ message: "Ticket Deleted" });
+
+    } catch (error) {
+        next(error)
+    }
+});
+
 module.exports = router;
