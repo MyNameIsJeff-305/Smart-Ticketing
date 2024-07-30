@@ -23,6 +23,12 @@ module.exports = (sequelize, DataTypes) => {
           otherKey: 'partId'
         }),
         Ticket.belongsTo(
+          models.Location, {
+            foreignKey: 'locationId',
+            onDelete: 'CASCADE'
+          }
+        ),
+        Ticket.belongsTo(
           models.Customer,
           { foreignKey: 'customerId', onDelete: 'CASCADE' }
         )
@@ -38,6 +44,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       references: {
         model: 'Customers',
+        key: 'id'
+      },
+      onDelete: 'CASCADE'
+    },
+    locationId: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Locations',
         key: 'id'
       },
       onDelete: 'CASCADE'

@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
       Location.belongsTo(
         models.Customer,
         { foreignKey: 'customerId', onDelete: 'CASCADE' }
+      ),
+      Location.hasMany(
+        models.Ticket,
+        {foreignKey: "locationId", onDelete: 'CASCADE'}
       )
     }
   }
