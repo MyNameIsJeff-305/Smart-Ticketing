@@ -86,11 +86,18 @@ const validateSignup = [
     check('quantity').exists({ checkFalsy: true }).withMessage('Quantity is required'),
     check('quantity').isInt().withMessage('Quantity must be an integer'),
     handleValidationErrors
-  ]
+  ];
+
+  const validatePartImage = [
+    check('url').exists({ checkFalsy: true }).withMessage('URL is required'),
+    check('url').isURL().withMessage('URL must be a valid URL'),
+    handleValidationErrors
+  ];
 
 module.exports = {
     validateLogin,
     validateSignup,
     validateTicket,
-    validatePart
+    validatePart,
+    validatePartImage
 }
