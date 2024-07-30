@@ -67,11 +67,6 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     options.tableName = 'Tickets';
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, {
-      name: {
-        [Op.in]: ["Installation in Dental Design", "TroubleShooting of Network in AA Glass",
-          "Stations Repair in Dental Design", "Technical Support in AA Glass", "Assessment on South Beach Dentistry"]
-      }
-    }, {});
+    return queryInterface.bulkDelete(options, {}, {});
   }
 };

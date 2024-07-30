@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey: 'ticketId',
           otherKey: 'partId'
         }),
-        Ticket.hasOne(
+        Ticket.belongsTo(
           models.Location, {
             foreignKey: 'locationId',
             onDelete: 'CASCADE'
