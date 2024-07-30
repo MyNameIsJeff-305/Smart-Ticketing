@@ -14,6 +14,7 @@ module.exports = {
       {
         workOrderDate: new Date(2024, 2, 1),
         customerId: 1,
+        locationId: 2,
         jobDescription: "Install, configure, and upgrade software applications on client systems. Provide support for software-related issues and ensure compatibility with existing systems.",
         technician: 2,
         checkIn: new Date(2024, 1, 10),
@@ -23,6 +24,7 @@ module.exports = {
       {
         workOrderDate: new Date(2024, 3, 2),
         customerId: 2,
+        locationId: 3,
         jobDescription: "Diagnose and resolve network connectivity issues for clients. Perform regular network maintenance and upgrades.",
         technician: 3,
         checkIn: new Date(2024, 1, 13),
@@ -32,6 +34,7 @@ module.exports = {
       {
         workOrderDate: new Date(2024, 2, 5),
         customerId: 1,
+        locationId: 1,
         jobDescription: "Provide repair and maintenance services for computer hardware. Manage hardware inventory and order new parts as needed.",
         technician: 2,
         checkIn: new Date(2024, 1, 13),
@@ -41,6 +44,7 @@ module.exports = {
       {
         workOrderDate: new Date(2024, 2, 15),
         customerId: 2,
+        locationId: 3,
         jobDescription: "Offer technical support to clients via phone, email, or in-person. Resolve IT issues efficiently and maintain high customer satisfaction.",
         technician: 3,
         checkIn: new Date(2024, 2, 13),
@@ -49,7 +53,8 @@ module.exports = {
       },
       {
         workOrderDate: new Date(2024, 4, 5),
-        customerId: 4,
+        customerId: 2,
+        locationId: 3,
         jobDescription: "Protect client systems and data from cyber threats. Conduct security assessments and implement security measures.",
         technician: 2,
         checkIn: new Date(2024, 5, 20),
@@ -62,11 +67,6 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     options.tableName = 'Tickets';
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, {
-      name: {
-        [Op.in]: ["Installation in Dental Design", "TroubleShooting of Network in AA Glass",
-          "Stations Repair in Dental Design", "Technical Support in AA Glass", "Assessment on South Beach Dentistry"]
-      }
-    }, {});
+    return queryInterface.bulkDelete(options, {}, {});
   }
 };

@@ -1,28 +1,29 @@
+// backend/utils/auth.js
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { Employee } = require('../db/models');
+const { User } = require('../db/models/');
 
 const { secret, expiresIn } = jwtConfig;
 
-//Sends a JWT Cookie
+// Sends a JWT Cookie
 const setTokenCookie = (res, user) => {
-    //Create the token
+    // Create the token.
     const safeUser = {
         id: user.id,
         email: user.email,
-        username: user.username
+        username: user.username,
     };
     const token = jwt.sign(
         { data: safeUser },
         secret,
-        { expiresIn: parseInt(expiresIn) } //604800 secs = 1 week
+        { expiresIn: parseInt(expiresIn) } // 604,800 seconds = 1 week
     );
 
     const isProduction = process.env.NODE_ENV === "production";
 
-    //Set the token cookie
+    // Set the token cookie
     res.cookie('token', token, {
-        maxAge: expiresIn * 1000, //maxAge in msecs
+        maxAge: expiresIn * 1000, // maxAge in milliseconds
         httpOnly: true,
         secure: isProduction,
         sameSite: isProduction && "Lax"
@@ -43,7 +44,7 @@ const restoreUser = (req, res, next) => {
 
         try {
             const { id } = jwtPayload.data;
-            req.user = await Employee.findByPk(id, {
+            req.user = await User.findByPk(id, {
                 attributes: {
                     include: ['email', 'createdAt', 'updatedAt']
                 }
@@ -59,15 +60,15 @@ const restoreUser = (req, res, next) => {
     });
 };
 
-//If there is no current user, return an error
-const requireAuth = function (req, _res, next) {
+// If there is no current user, return an error
+const requireAuth = function (req, res, next) {
     if (req.user) return next();
+    
+    //return res.status(401).json({message: "authentication required"});
 
-    const err = new Error('Authentication Required');
-    err.title = 'Authentication Required';
-    err.errors = { message: 'Authentication Required' };
-    err.status = 401;
-    return next(err);
-};
+    return res.status(401).json({
+        message: "Authentication required"
+    });
+}
 
 module.exports = { setTokenCookie, restoreUser, requireAuth };

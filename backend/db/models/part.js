@@ -49,6 +49,13 @@ module.exports = (sequelize, DataTypes) => {
       },
       onDelete: 'CASCADE'
     },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        min: 0
+      },
+    }
   }, {
     sequelize,
     modelName: 'Part',
