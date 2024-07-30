@@ -18,7 +18,7 @@ module.exports = {
         sku: "24PSWTCH",
         description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         unitPrice: 48.50,
-        ticketId: 1,
+        // ticketId: 1,
         quantity: 5,
       },
       {
@@ -27,14 +27,14 @@ module.exports = {
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         unitPrice: 348.50,
         quantity: 3,
-        ticketId: 1
+        // ticketId: 1
       },
       {
         name: "Riser UTP Cable",
         sku: "ADIRC",
         description: "ADI PRO Cat 6 Riser Cable is UL certified and features 23 AWG with 4 solid bare annealed copper conductor-pairs. Our wire is fully tested to exceed industry standards to satisfy the need for present and future networks in the market. Also available in other colors.",
         unitPrice: 35.50,
-        ticketId: 2,
+        // ticketId: 2,
         quantity: 1
       }
     ], options)

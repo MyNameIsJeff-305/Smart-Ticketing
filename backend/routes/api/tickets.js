@@ -1,8 +1,9 @@
 const express = require('express');
 
-const { Ticket, Part, TicketPart, Customer, Location, User } = require('../../db/models/');
+const { Ticket, Part, TicketPart, Customer, Location, User } = require('../../db/models');
 
 const { requireAuth } = require('../../utils/auth');
+const { validateTicket, validatePart } = require('../../utils/validations');
 
 const router = express.Router();
 
@@ -115,10 +116,10 @@ router.get('/:ticketId', requireAuth, async (req, res, next) => {
 });
 
 //Create a Ticket
-router.post('/', async (req, res, next) => {
+router.post('/', requireAuth, validateTicket, async (req, res, next) => {
     try {
         const { workOrderDate, customerId, locationId, jobDescription, technician, checkIn, checkOut, name } = req.body;
-    
+
         const newTicket = await Ticket.create({
             workOrderDate: workOrderDate,
             customerId: customerId,
@@ -131,10 +132,68 @@ router.post('/', async (req, res, next) => {
         });
 
         res.status(201).json(newTicket);
-    
+
     } catch (error) {
         next(error)
     }
-})
+});
+
+//Add a Part to a Ticket
+router.post('/:ticketId/parts', requireAuth, validatePart, async (req, res, next) => {
+    try {
+        const { name, sku, description, unitPrice, quantity } = req.body;
+
+        const newPart = await Part.create({
+            name: name,
+            sku: sku,
+            description: description,
+            unitPrice: unitPrice,
+            quantity: quantity,
+            // ticketId: parseInt(req.params.ticketId)
+        });
+
+        if (newPart) {
+            await TicketPart.create({
+                ticketId: parseInt(req.params.ticketId),
+                partId: newPart.id
+            });
+        }
+
+        res.status(201).json(newPart);
+
+    } catch (error) {
+        next(error)
+    }
+});
+
+//Edit a Ticket
+router.put('/:ticketId', requireAuth, validateTicket, async (req, res, next) => {
+    try {
+        const ticket = await Ticket.findByPk(parseInt(req.params.ticketId));
+
+        if (!ticket) {
+            return res.status(404).json({ message: "Ticket Cannot Be Found" });
+        }
+
+        const { signature, jobDescription, name, workOrderDate, customerId, locationId, technician, checkIn, checkOut } = req.body;
+
+        ticket.workOrderDate = workOrderDate;
+        ticket.customerId = customerId;
+        ticket.locationId = locationId;
+        ticket.technician = technician;
+        ticket.checkIn = checkIn;
+        ticket.checkOut = checkOut;
+        ticket.jobDescription = jobDescription;
+        ticket.name = name;
+        ticket.signature = signature
+
+        await ticket.save();
+
+        res.json(ticket);
+
+    } catch (error) {
+        next(error)
+    }
+});
 
 module.exports = router;

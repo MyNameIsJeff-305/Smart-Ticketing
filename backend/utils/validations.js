@@ -50,7 +50,47 @@ const validateSignup = [
     handleValidationErrors
   ];
 
+  const validateTicket = [
+      check('workOrderDate').exists({ checkFalsy: true }).withMessage('Work Order Date is required'),
+      check('workOrderDate').isDate().withMessage('Work Order Date must be a valid date'),
+      check('customerId').exists({ checkFalsy: true }).withMessage('Customer ID is required'),
+      check('customerId').isInt().withMessage('Customer ID must be an integer'),
+      check('locationId').exists({ checkFalsy: true }).withMessage('Location ID is required'),
+      check('locationId').isInt().withMessage('Location ID must be an integer'),
+      check('technician').exists({ checkFalsy: true }).withMessage('Technician is required'),
+      check('technician').isInt().withMessage('Technician must be an integer'),
+      check('checkIn').exists({ checkFalsy: true }).withMessage('Check In Date is required'),
+      check('checkIn').isDate().withMessage('Check In Date must be a valid date'),
+      check('checkOut')
+          .exists({ checkFalsy: true })
+          .withMessage('Check Out Date is required')
+          .custom((value, { req }) => {
+              const checkInDate = new Date(req.body.checkIn);
+              const checkOutDate = new Date(value);
+              if (checkOutDate <= checkInDate) {
+                  throw new Error('Check Out Date must be after Check In Date');
+              }
+              return true;
+          }),
+      handleValidationErrors
+  ];
+
+  const validatePart = [
+    check('name').exists({ checkFalsy: true }).withMessage('Name is required'),
+    check('name').isLength({ max: 50 }).withMessage('Name must be 50 characters or less'),
+    check('sku').exists({ checkFalsy: true }).withMessage('SKU is required'),
+    check('sku').isLength({ max: 50 }).withMessage('SKU must be 50 characters or less'),
+    check('description').isLength({ max: 500 }).withMessage('Description must be 500 characters or less'),
+    check('unitPrice').exists({ checkFalsy: true }).withMessage('Unit Price is required'),
+    check('unitPrice').isFloat().withMessage('Unit Price must be a number'),
+    check('quantity').exists({ checkFalsy: true }).withMessage('Quantity is required'),
+    check('quantity').isInt().withMessage('Quantity must be an integer'),
+    handleValidationErrors
+  ]
+
 module.exports = {
     validateLogin,
-    validateSignup
+    validateSignup,
+    validateTicket,
+    validatePart
 }

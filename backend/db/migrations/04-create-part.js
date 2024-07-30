@@ -22,7 +22,8 @@ module.exports = {
       },
       sku: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        // unique: true
       },
       description: {
         type: Sequelize.STRING(500)
@@ -31,9 +32,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.FLOAT
       },
-      ticketId: {
-        type: Sequelize.INTEGER
-      },
+      // ticketId: {
+      //   type: Sequelize.INTEGER
+      // },
       quantity: {
         type: Sequelize.INTEGER,
         allowNull: false,

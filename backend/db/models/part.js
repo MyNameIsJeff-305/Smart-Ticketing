@@ -28,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     sku: {
       allowNull: false,
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      // unique: true,
     },
     description: {
       allowNull: false,
@@ -41,14 +42,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.FLOAT
     },
-    ticketId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Tickets',
-        key: 'id'
-      },
-      onDelete: 'CASCADE'
-    },
+    // ticketId: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'Tickets',
+    //     key: 'id'
+    //   },
+    //   onDelete: 'CASCADE'
+    // },
     quantity: {
       type: DataTypes.INTEGER,
       allowNull: false,
