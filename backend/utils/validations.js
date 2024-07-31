@@ -97,7 +97,7 @@ const validatePartImage = [
 const checkRole = (roleName) => {
   return async (req, res, next) => {
     try {
-      const user = await UserActivation.findByPk(req.user.id, {
+      const user = await User.findByPk(req.user.id, {
         include: [{
           model: Role,
           attributes: ['name'],

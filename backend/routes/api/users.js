@@ -119,7 +119,7 @@ router.put('/:userId', requireAuth, checkRole('Admin'), async (req, res, next) =
         user.lastName = lastName;
 
     } catch (error) {
-        
+        next(error);
     }
 });
 
