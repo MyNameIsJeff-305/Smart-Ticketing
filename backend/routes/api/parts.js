@@ -3,6 +3,7 @@ const express = require('express');
 const { Part, PartImage, Ticket, TicketPart } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 const { validatePartImage, validatePart } = require('../../utils/validations');
+const { where } = require('sequelize');
 
 const router = express.Router();
 
@@ -16,7 +17,11 @@ router.get('/', requireAuth, async (req, res, next) => {
             return res.status(404).json({ message: "No parts at this time" })
         }
 
-        res.json(parts)
+        const Parts = [];
+
+        const PartImages = await PartImage.findAll();
+
+        res.json(Parts)
 
     } catch (error) {
         next(error);
@@ -122,7 +127,7 @@ router.put('/:partId', requireAuth, validatePart, async (req, res, next) => {
 
         const part = await Part.findByPk(parseInt(req.params.partId));
 
-        if(!part) {
+        if (!part) {
             return res.status(404).json({ message: "Part not found" });
         }
 
