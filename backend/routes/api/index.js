@@ -5,6 +5,7 @@ const usersRouter = require('./users.js');
 const ticketsRouter = require('./tickets.js');
 const partsRouter = require('./parts.js');
 const customersRouter = require('./customers.js');
+const tagsRouter = require('./tags.js');
 
 const { restoreUser } = require('../../utils/auth.js');
 
@@ -14,6 +15,7 @@ router.use('/users', usersRouter);
 router.use('/tickets', ticketsRouter);
 router.use('/parts', partsRouter);
 router.use('/customers', customersRouter);
+router.use('/tags', tagsRouter);
 
 //Routes________________________________________________________
 router.post('/test', (req, res) => {
