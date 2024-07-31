@@ -1,6 +1,6 @@
 const express = require('express');
 
-const { Ticket, Part, TicketPart, Customer, Location, User } = require('../../db/models');
+const { Ticket, Part, TicketPart, Customer, Location, User, TicketTag, Tag } = require('../../db/models');
 
 const { requireAuth } = require('../../utils/auth');
 const { validateTicket, validatePart } = require('../../utils/validations');
@@ -75,8 +75,26 @@ router.get('/:ticketId', requireAuth, async (req, res, next) => {
 
         const technician = await User.findByPk(ticket.technician);
 
+        //Getting the Location Related to it
         const location = await Location.findByPk(ticket.locationId);
 
+        //Getting the Tags Related to it
+        const ticketTags = await TicketTag.findAll({
+            where: {
+                ticketId: ticket.id
+            }
+        });
+
+        const tags = [];
+
+        for (const ticketTag of ticketTags) {
+            if(ticketTag.ticketId === ticket.id) {
+                const tag = await Tag.findByPk(ticketTag.tagId);
+                tags.push(tag);
+            }
+        }
+
+        //Creating a Safe Ticket Object for the Response
         const safeTicket = {
             id: ticket.id,
             workOrderDate: ticket.workOrderDate,
@@ -105,7 +123,8 @@ router.get('/:ticketId', requireAuth, async (req, res, next) => {
             checkOut: ticket.checkOut,
             createdAt: ticket.createdAt,
             updatedAt: ticket.updatedAt,
-            parts: parts
+            parts: parts,
+            tags: tags
         }
 
         res.json(safeTicket);
@@ -208,6 +227,46 @@ router.delete('/:ticketId', requireAuth, async (req, res, next) => {
         await ticket.destroy();
 
         res.json({ message: "Ticket Deleted" });
+
+    } catch (error) {
+        next(error)
+    }
+});
+
+//Add a Tag to a Ticket based on the Ticket Id
+router.post('/:ticketId/tags', requireAuth, async (req, res, next) => {
+    try {
+        const { tagId } = req.body;
+
+        const ticketTag = await TicketTag.create({
+            ticketId: parseInt(req.params.ticketId),
+            tagId: tagId
+        });
+
+        res.status(201).json(ticketTag);
+
+    } catch (error) {
+        next(error)
+    }
+});
+
+//Remove a Tag from a Ticket based on the Ticket Id
+router.delete('/:ticketId/tags/:tagId', requireAuth, async (req, res, next) => {
+    try {
+        const ticketTag = await TicketTag.findOne({
+            where: {
+                ticketId: parseInt(req.params.ticketId),
+                tagId: parseInt(req.params.tagId)
+            }
+        });
+
+        if (!ticketTag) {
+            return res.status(404).json({ message: "Tag Cannot Be Found" });
+        }
+
+        await ticketTag.destroy();
+
+        res.json({ message: "Tag Removed" });
 
     } catch (error) {
         next(error)

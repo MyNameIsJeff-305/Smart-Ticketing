@@ -119,7 +119,16 @@ const checkRole = (roleName) => {
       res.status(500).json({ message: 'Server Error' });
     }
   }
-}
+};
+
+const validateTag = [
+  check('name').exists({ checkFalsy: true }).withMessage('Name is required'),
+  check('name').isLength({ max: 50 }).withMessage('Name must be 50 characters or less'),
+  check('description').isLength({ max: 500 }).withMessage('Description must be 500 characters or less'),
+  check('color').exists({ checkFalsy: true }).withMessage('Color is required'),
+  check('color').isHexColor().withMessage('Color must be a valid hex color'),
+  handleValidationErrors
+];
 
 module.exports = {
   validateLogin,
@@ -127,5 +136,6 @@ module.exports = {
   validateTicket,
   validatePart,
   validatePartImage,
+  validateTag,
   checkRole
 }
