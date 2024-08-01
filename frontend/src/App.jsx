@@ -1,5 +1,12 @@
+import LoginFormPage from "./components/LoginFormPage";
+import { ThemeProvider } from "@/components/theme-provider"
+
 function App() {
-  return <h1> Hello from App </h1>;
+  return (
+    <ThemeProvider>
+      <LoginFormPage />
+    </ThemeProvider>
+)
 }
 
 export default App;
