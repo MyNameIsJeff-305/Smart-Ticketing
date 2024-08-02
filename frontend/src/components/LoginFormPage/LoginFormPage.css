@@ -1,0 +1,194 @@
+/* Base styles */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    color: #eaeaea;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-image: url('../../../dist/assets/background.jpg');
+    background-size: cover; /* Cover the entire element */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    min-height: 100vh; /* Ensure it covers the full viewport height */
+}
+
+.right-section {
+    position: relative; /* Required to position the pseudo-element */
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ensure the pseudo-element doesn't overflow the container */
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.right-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit; /* Inherit the background from the parent (optional) */
+    filter: blur(10px); /* Apply the blur effect */
+    z-index: -1; /* Ensure the pseudo-element is behind the content */
+    pointer-events: none; /* Allow clicks to pass through the pseudo-element */
+}
+
+.left-section {
+    flex: 1;
+    display: flex;
+    align-content: flex-start;
+    gap: 800px;
+    padding-left: 50px;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-items: start;
+    align-items: flex-start;
+}
+
+.logo img {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+}
+
+.left-text aside {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #eaeaea;
+}
+
+.left-text {
+    margin-top: 20px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #bfbfbf;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.login-form {
+    width: 100%;
+    max-width: 300px; /* Set max-width to 300px for both inputs and button */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align all form elements */
+}
+
+.login-form label {
+    width: 100%; /* Ensure labels also follow the same width */
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.login-form input {
+    width: 93%; /* Set inputs to 100% of the parent's width */
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: #eaeaea;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.login-form button {
+    width: 100%; /* Set button to 100% of the parent's width */
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    
+    transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Tablet view */
+@media (max-width: 1024px) {
+    main {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .left-section {
+        display: none;
+        padding-left: 30px;
+        gap: 400px;
+    }
+
+    .login-form {
+        max-width: 300px;
+    }
+}
+
+/* Mobile view */
+@media (max-width: 640px) {
+    main {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .left-section {
+        display: none;
+        padding-left: 20px;
+        gap: 50px;
+    }
+
+    .logo img {
+        width: 80px;
+    }
+
+    .left-text aside {
+        font-size: 1rem;
+    }
+
+    .left-text {
+        font-size: 0.9rem;
+    }
+
+    .login-form {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .login-form input,
+    .login-form button {
+        font-size: 0.9rem;
+    }
+}
