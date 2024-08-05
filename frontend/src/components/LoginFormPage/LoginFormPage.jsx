@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
@@ -12,14 +13,16 @@ function LoginFormPage() {
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
-    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+    
+    const sessionUser = useSelector(state => state.session.user);
+    // const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
     //Reset the state when the component is rendered
     useEffect(() => {
+        sessionUser && navigate('/dashboard');
         setCredential('');
         setPassword('');
         setErrors({});
-        setIsButtonDisabled(true);
     }, []);
 
     useEffect(() => {
@@ -31,8 +34,10 @@ function LoginFormPage() {
             newErrors.password = 'Password must be 6 characters or longer';
         }
         setErrors(newErrors);
-        setIsButtonDisabled(credential.length < 4 || password.length < 6);
+        // setIsButtonDisabled(credential.length < 4 || password.length < 6);
     }, [credential, password]);
+
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -46,19 +51,19 @@ function LoginFormPage() {
                     setErrors(data.errors);
                 }
             });
-
-
     }
 
     return (
         <main>
             <section className='left-section'>
                 <div className="logo">
-                    <img src="../../../dist/assets/logo.png" alt="logo" />
+                    <img src="../../../dist/assets/horizontal-logo-white.png" alt="logo" />
                 </div>
                 <aside className="left-text">
                     <aside>SMART Ticketing</aside>
-                    This is a Ticket Management System for IT Businesses that handle on Site installations and Troubleshooting
+                    <p className='left-text-description'>
+                        This is a Ticket Management System for IT Businesses that handle on Site installations and Troubleshooting
+                    </p>
                 </aside>
             </section>
             <section className='right-section'>
