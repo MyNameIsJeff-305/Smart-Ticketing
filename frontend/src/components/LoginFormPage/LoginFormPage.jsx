@@ -54,7 +54,7 @@ function LoginFormPage() {
     }
 
     return (
-        <main>
+        <>
             <section className='left-section'>
                 <div className="logo">
                     <img src="../../../dist/assets/horizontal-logo-white.png" alt="logo" />
@@ -84,7 +84,7 @@ function LoginFormPage() {
                     )}
                 </div>
             </section>
-        </main>
+        </>
     );
 }
 
