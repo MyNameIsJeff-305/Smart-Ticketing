@@ -4,11 +4,17 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    background-color: #222;
+    background-color: rgba(255, 255, 255, 0.1);
     /* Dark background */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 20px 0;
+    cursor: pointer;
+}
+
+.profile-container:hover {
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .profile-container span {
@@ -29,11 +35,66 @@
 }
 
 .profile-container span,
-.profile-container img {
+.profile-container img,
+.fallback-profile {
     transition: transform 0.3s ease;
 }
 
 .profile-container:hover span,
-.profile-container:hover img {
+.profile-container:hover img,
+.fallback-profile:hover {
     transform: scale(1.05);
+}
+
+.fallback-profile {
+    background-color: #007bff;
+    /* Accent color */
+    color: #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+@media (max-width: 1012px) {
+
+    .profile-container {
+        border: none;
+        background-color: transparent;
+        box-shadow: none;
+        transition: all 0.3s ease;
+
+    }
+
+    .profile-container span {
+        display: none;
+        transition: all 0.3s ease;
+
+    }
+
+    .profile-container img {
+        width: 40px;
+        height: 40px;
+        transition: all 0.3s ease;
+
+    }
+
+    .profile-container:hover img {
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+
+    }
+
+    .fallback-profile {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        transition: all 0.3s ease;
+
+    }
+
 }

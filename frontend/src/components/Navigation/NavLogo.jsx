@@ -13,7 +13,8 @@ export default function NavLogo() {
 
     return (
         <div className='nav-logo-container' onClick={(e) => handleNavigate(e)}>
-            <img src="/assets/horizontal-logo-white.png" className='logo' alt='logo'></img>
+            <img src="/assets/horizontal-logo-white.png" className='logo-main' alt='logo'></img>
+            <img src="/assets/logo-only.png" className='logo-mobile' alt='logo'></img>
         </div>
     );
 }

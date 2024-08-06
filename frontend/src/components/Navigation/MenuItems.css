@@ -29,6 +29,8 @@
 .menu-item.active {
     color: #007bff;
     font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
     border-bottom: 2px solid #007bff;
 }
 
@@ -42,7 +44,7 @@ body {
 }
 
 /* Hide the navbar menu in mobile view */
-@media (max-width: 1012px) {
+@media (max-width: 830px) {
     .nav-links {
         display: none;
         transition: all 0.3s;
@@ -50,7 +52,7 @@ body {
     }
 }
 
-@media (min-width: 1013px) and (max-width: 1307px) {
+@media (min-width: 831px) and (max-width: 1307px) {
     .menu-item span {
         display: none;
         transition: all 0.3s;
