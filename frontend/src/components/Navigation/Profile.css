@@ -1,0 +1,39 @@
+/* Profile.css */
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #222;
+    /* Dark background */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+}
+
+.profile-container span {
+    color: #fff;
+    font-size: 18px;
+    /* font-weight: 600; */
+    margin-right: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.profile-container img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 2px solid #007bff;
+    /* Accent border color */
+}
+
+.profile-container span,
+.profile-container img {
+    transition: transform 0.3s ease;
+}
+
+.profile-container:hover span,
+.profile-container:hover img {
+    transform: scale(1.05);
+}
