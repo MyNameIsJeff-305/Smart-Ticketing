@@ -1,16 +1,17 @@
 .nav-links {
     display: flex;
-    gap: 50px;
+    width: 80%;
+    gap: 20px;
     align-items: center;
     justify-content: center;
     transition: all 0.3s;
-
 }
 
 .menu-item {
     display: flex;
     padding: 10px 15px;
-    gap: 5px;
+    align-items: center;
+    gap: 10px;
     margin: 0 10px;
     color: #f0f0f0;
     text-decoration: none;

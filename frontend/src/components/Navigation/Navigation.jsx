@@ -25,7 +25,7 @@ export default function Navigation() {
     return (
         <nav className="navigation">
             <NavLogo />
-            <MenuItems />
+            <MenuItems flexDirection={"rows"} alignItems={"center"}/>
             <Profile user={sessionUser} profilePic={profilePic} />
         </nav>
     );
