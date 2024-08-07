@@ -1,0 +1,71 @@
+.nav-links {
+    display: flex;
+    width: 80%;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.menu-item {
+    display: flex;
+    padding: 10px 15px;
+    align-items: center;
+    gap: 10px;
+    margin: 0 10px;
+    color: #f0f0f0;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.menu-item:hover {
+    color: #007bff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.menu-item.active {
+    color: #007bff;
+    font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    border-bottom: 2px solid #007bff;
+}
+
+body {
+    background-color: #121212;
+    /* Dark background */
+    color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Hide the navbar menu in mobile view */
+@media (max-width: 830px) {
+    .nav-links {
+        display: none;
+        transition: all 0.3s;
+
+    }
+}
+
+@media (min-width: 831px) and (max-width: 1307px) {
+    .menu-item span {
+        display: none;
+        transition: all 0.3s;
+
+    }
+
+    .menu-item-icon {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 25px;
+        transition: all 0.3s;
+
+    }
+}
