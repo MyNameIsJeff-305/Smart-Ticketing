@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, } = require('../../db/models');
+const { User, UserImage, UserRole, Role } = require('../../db/models');
 const { validateSignup, checkRole } = require('../../utils/validations');
 
 const router = express.Router();
@@ -13,7 +13,6 @@ const router = express.Router();
 router.get('/me', requireAuth, async (req, res, next) => {
     try {
         const currentUser = await User.findByPk(parseInt(req.user.id));
-
         res.json({ user: currentUser } || { "user": null });
     } catch (error) {
         next(error);
@@ -29,7 +28,6 @@ router.post('/', validateSignup, async (req, res) => {
                 email: req.body.email
             }
         });
-
         for (const user of userEmail) {
             if (user.email === req.body.email) {
                 return res.status(500).json({
@@ -40,7 +38,6 @@ router.post('/', validateSignup, async (req, res) => {
                 });
             }
         }
-
         const userUsername = await User.findAll({
             where: {
                 username: req.body.username
@@ -55,10 +52,8 @@ router.post('/', validateSignup, async (req, res) => {
                     }
                 });
         }
-
         const { email, password, username, firstName, lastName } = req.body;
         const hashedPassword = bcrypt.hashSync(password);
-
         const newUser = await User.create({
             firstName: firstName,
             lastName: lastName,
@@ -66,7 +61,6 @@ router.post('/', validateSignup, async (req, res) => {
             username: username,
             hashedPassword: hashedPassword
         });
-
         const safeUser = {
             id: newUser.id,
             firstName: newUser.firstName,
@@ -74,9 +68,7 @@ router.post('/', validateSignup, async (req, res) => {
             email: newUser.email,
             username: newUser.username
         };
-
         await setTokenCookie(res, safeUser);
-
         return res.json({
             user: safeUser
         });
@@ -85,20 +77,38 @@ router.post('/', validateSignup, async (req, res) => {
     }
 });
 
+//Get a User's Role
+router.get('/:userId/role', requireAuth, checkRole('Admin'), async (req, res, next) => {
+    try {
+        const user = await User.findByPk(parseInt(req.params.userId));
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        const userRole = await UserRole.findOne({
+            where: {
+                userId: user.id
+            }
+        });
+
+        const role = await Role.findByPk(userRole.roleId);
+
+        res.json({ role });
+
+    } catch (error) {
+        next(error);
+    }
+});
+
 //Change the role of a user
-router.put('/:userId', requireAuth, checkRole('Admin'), async (req, res, next) => {
+router.put('/:userId/role', requireAuth, checkRole('Admin'), async (req, res, next) => {
     try {
         const user = await User.findByPk(req.params.userId);
-
         if (!user) {
             res.status(404).json({ message: 'User not found' });
         }
-
         const updatedUser = await user.update({ roleId: req.body.roleId });
-
         res.json({ user: updatedUser });
     } catch (error) {
-        
     }
 });
 
@@ -106,18 +116,50 @@ router.put('/:userId', requireAuth, checkRole('Admin'), async (req, res, next) =
 router.put('/:userId', requireAuth, checkRole('Admin'), async (req, res, next) => {
     try {
         const user = await User.findByPk(parseInt(req.params.userId));
-
-        if(!user) {
+        if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-
         const { email, username, firstName, lastName } = req.body;
-
         user.email = email;
         user.username = username;
         user.firstName = firstName;
         user.lastName = lastName;
+    } catch (error) {
+        next(error);
+    }
+});
 
+//Get a Profile Picture
+router.get('/:userId/image', requireAuth, async (req, res, next) => {
+    try {
+        const user = await User.findByPk(parseInt(req.params.userId));
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        const userImage = await UserImage.findOne({
+            where: {
+                userId: user.id
+            }
+        });
+        res.json({ userImage });
+    } catch (error) {
+        next(error);
+    }
+});
+
+//Edit a Profile Picture
+router.put('/:userId/image', requireAuth, async (req, res, next) => {
+    try {
+        const { url } = req.body;
+        const user = await User.findByPk(parseInt(req.params.userId));
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        const userImage = await UserImage.update({
+            userId: user.id,
+            url
+        });
+        res.json({ userImage });
     } catch (error) {
         next(error);
     }
