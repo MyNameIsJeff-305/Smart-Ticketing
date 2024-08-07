@@ -11,7 +11,9 @@ html {
 
 main {
     display: flex;
+    width: 100%;
     flex-direction: row;
+    background-repeat: no-repeat;
     max-height: 100vh;
     background-image: url('../../../dist/assets/background.jpg');
     background-size: cover;
@@ -80,6 +82,7 @@ main {
 
 .form-container {
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -104,11 +107,12 @@ main {
     width: 100%;
     /* Ensure labels also follow the same width */
     margin-bottom: 15px;
+    color: #eaeaea;
     font-size: 1rem;
 }
 
 .login-form input {
-    width: 93%;
+    width: 100%;
     /* Set inputs to 100% of the parent's width */
     padding: 10px;
     margin-top: 5px;
@@ -142,49 +146,42 @@ main {
     background-color: #0056b3;
 }
 
+.right-section-logo {
+    display: none;
+}
+
 /* Tablet view */
 @media (max-width: 1024px) {
     main {
-        max-height: 768px;
-        flex-direction: column;
+        max-height: 1024px;
         justify-content: center;
     }
 
     .left-section {
         display: none;
-        padding-left: 30px;
-        gap: 400px;
     }
 
-    .login-form {
-        max-width: 300px;
-    }
-}
-
-/* Mobile view */
-@media (max-width: 640px) {
-    main {
-        max-height: 480px;
+    .right-section {
+        width: 60%;
+        gap: 20px;
         flex-direction: column;
-        justify-content: center;
     }
 
-    .left-section {
-        display: none;
-        padding-left: 20px;
-        gap: 50px;
+    .form-container {
+        max-width: 80%;
+        margin: 0 auto;
     }
 
     .logo img {
-        width: 80px;
+        width: 100px;
     }
 
     .left-text aside {
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
 
     .left-text {
-        font-size: 0.9rem;
+        font-size: 1.2rem;
     }
 
     .login-form {
@@ -194,6 +191,61 @@ main {
 
     .login-form input,
     .login-form button {
-        font-size: 0.9rem;
+        font-size: 1.2rem;
+    }
+
+    .right-section-logo {
+        display: flex;
+        width: 40%;
+    }
+}
+
+/* Mobile view */
+@media (max-width: 640px) {
+    main {
+        max-height: 1024px;
+        justify-content: center;
+    }
+
+    .left-section {
+        display: none;
+    }
+
+    .right-section {
+        width: 100%;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .form-container {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .logo img {
+        width: 100px;
+    }
+
+    .left-text aside {
+        font-size: 1.5rem;
+    }
+
+    .left-text {
+        font-size: 1.2rem;
+    }
+
+    .login-form {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    .login-form input,
+    .login-form button {
+        font-size: 1.2rem;
+    }
+
+    .right-section-logo {
+        display: flex;
+        width: 40%;
     }
 }

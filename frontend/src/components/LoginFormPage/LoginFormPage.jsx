@@ -13,7 +13,7 @@ function LoginFormPage() {
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
-    
+
     const sessionUser = useSelector(state => state.session.user);
     // const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
@@ -37,7 +37,7 @@ function LoginFormPage() {
         // setIsButtonDisabled(credential.length < 4 || password.length < 6);
     }, [credential, password]);
 
-    
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -54,7 +54,7 @@ function LoginFormPage() {
     }
 
     return (
-        <>
+        <main>
             <section className='left-section'>
                 <div className="logo">
                     <img src="../../../dist/assets/horizontal-logo-white.png" alt="logo" />
@@ -67,6 +67,7 @@ function LoginFormPage() {
                 </aside>
             </section>
             <section className='right-section'>
+                <img className='right-section-logo' src="../../../dist/assets/horizontal-logo-white.png" alt="logo" />
                 <div className='form-container'>
                     <form className="login-form">
                         <label>
@@ -84,7 +85,7 @@ function LoginFormPage() {
                     )}
                 </div>
             </section>
-        </>
+        </main>
     );
 }
 
