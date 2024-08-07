@@ -30,7 +30,7 @@ export default function Profile({ user, profilePic }) {
                 <span>{`${user.firstName}`}</span>
                 {
                     profilePic.url ?
-                        <div>
+                        <div onClick={toggleShow}>
                             <img src={profilePic.url} onClick={toggleShow} alt="Profile Picture" />
                         </div> :
                         <div className="fallback-profile" onClick={toggleShow}>{`${user.firstName[0]}${user.lastName[0]}`}</div>

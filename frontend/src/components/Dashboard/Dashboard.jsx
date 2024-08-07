@@ -2,9 +2,9 @@ import './Dashboard.css';
 
 function Dashboard() {
   return (
-    <div>
+    <main>
       <h1>Dashboard</h1>
-    </div>
+    </main>
   );
 }
 
