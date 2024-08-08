@@ -1,10 +1,67 @@
 main {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-image: none;
-    background-color: #212529;
+    text-align: center;
+    padding: 2rem;
+    color: #dcdcdc;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #a9a9a9;
+}
+
+.table {
+    width: 80%;
+    margin: 2rem auto;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #2b2b2b;
+    color: #dcdcdc;
+}
+
+.table thead th {
+    background-color: #3e3e3e;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+    /* border-bottom: 2px solid #4e4e4e; */
+    padding: 0.75rem;
+}
+
+.table tbody tr {
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.table tbody tr:hover {
+    background-color: #4e4e4e;
+}
+
+.table tbody td {
+    text-align: left;
+    padding: 0.75rem;
+    color: #dcdcdc;
+    /* border-top: 1px solid #4e4e4e; */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #3e3e3e;
+}
+
+.table-hover tbody tr:hover {
+    color: #ffffff;
+}
+
+.table-bordered {
+    /* border: 1px solid #4e4e4e; */
+}
+
+.table-bordered td,
+.table-bordered th {
+    /* border: 1px solid #4e4e4e; */
 }

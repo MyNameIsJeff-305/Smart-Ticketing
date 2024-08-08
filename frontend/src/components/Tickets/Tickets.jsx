@@ -34,10 +34,29 @@ function Tickets() {
   return (
     <Table striped bordered hover variant="dark">
       <thead>
-        <tr>
-          
-        </tr>
+        <th>
+          Order no.
+        </th>
+        <th>
+          Date
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          Technician
+        </th>
       </thead>
+      <tbody>
+        {tickets.map(ticket => (
+          <tr key={ticket.id} onClick={() => navigate(`/tickets/${ticket.id}`)}>
+            <td>{ticket.id}</td>
+            <td>{ticket.workOrderDate}</td>
+            <td>{ticket.name}</td>
+            <td>{ticket.technician}</td>
+          </tr>
+        ))}
+      </tbody>
     </Table>
   )
 }
