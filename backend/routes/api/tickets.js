@@ -8,7 +8,7 @@ const { validateTicket, validatePart } = require('../../utils/validations');
 const router = express.Router();
 
 //Get All Tickets
-router.get('/', requireAuth, async (_req, res, next) => {
+router.get('/', async (_req, res, next) => {
     try {
         // console.log("BEFORE QUERYING");
         const tickets = await Ticket.findAll();
@@ -244,6 +244,29 @@ router.post('/:ticketId/tags', requireAuth, async (req, res, next) => {
         });
 
         res.status(201).json(ticketTag);
+
+    } catch (error) {
+        next(error)
+    }
+});
+
+//Remove a Part from a Ticket based on the Ticket Id
+router.delete('/:ticketId/parts/:partId', requireAuth, async (req, res, next) => {
+    try {
+        const ticketPart = await TicketPart.findOne({
+            where: {
+                ticketId: parseInt(req.params.ticketId),
+                partId: parseInt(req.params.partId)
+            }
+        });
+
+        if (!ticketPart) {
+            return res.status(404).json({ message: "Part Cannot Be Found" });
+        }
+
+        await ticketPart.destroy();
+
+        res.json({ message: "Part Removed" });
 
     } catch (error) {
         next(error)

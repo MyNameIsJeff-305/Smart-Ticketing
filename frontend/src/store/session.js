@@ -20,9 +20,10 @@ const setUser = (user) => {
     };
 };
 
-const removeUser = () => {
+const removeUser = (user) => {
     return {
-        type: REMOVE_USER
+        type: REMOVE_USER,
+        payload: user
     };
 };
 

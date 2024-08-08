@@ -6,7 +6,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import './MenuItems.css'
 
 export default function MenuItems({ flexDirection, alignItems, width }) {
-    console.log(flexDirection);
+    // console.log(flexDirection);
     return (
         flexDirection === 'column' ?
             <nav className="nav-links-column" style={{ flexDirection: flexDirection, alignItems: alignItems }}>

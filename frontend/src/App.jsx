@@ -7,6 +7,7 @@ import './index.css'
 import LoginFormPage from "./components/LoginFormPage";
 import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard";
+import Tickets from "./components/Tickets";
 
 import { useEffect, useState } from "react";
 
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/tickets',
-        element: <Dashboard />
+        element: <Tickets />
       },
       {
         path: '/parts',

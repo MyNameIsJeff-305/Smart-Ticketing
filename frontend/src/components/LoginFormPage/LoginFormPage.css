@@ -9,7 +9,7 @@ html {
     color: #eaeaea;
 }
 
-main {
+.login-main {
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -24,6 +24,7 @@ main {
 .right-section {
     display: flex;
     width: 30%;
+    height: 100%;
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.7);
@@ -37,8 +38,8 @@ main {
 
 .left-section {
     flex: 1;
+    height: 100%;
     display: flex;
-    align-content: flex-start;
     /* gap: 800px; */
     padding-left: 50px;
     flex-direction: column;
@@ -70,6 +71,7 @@ main {
 
 .left-text-description {
     /* padding-bottom: 50px; */
+    margin-bottom: 80px;
     font-size: 15px;
 }
 

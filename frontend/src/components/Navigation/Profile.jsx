@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
+import * as sessionActions from '../../store/session';
+
 import { FaRightFromBracket } from "react-icons/fa6";
 import { FaUserEdit } from "react-icons/fa";
 
@@ -12,6 +14,7 @@ import MenuItems from './MenuItems';
 export default function Profile({ user, profilePic }) {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [showMenu, setShowMenu] = useState(false);
 
     const handleClose = () => setShowMenu(false);
@@ -22,6 +25,19 @@ export default function Profile({ user, profilePic }) {
         scroll: false,
         backdrop: true,
         placement: 'end',
+    }
+
+    const handleLogOut = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        dispatch(sessionActions.logout())
+            .then(() => {
+                handleClose();
+            })
+            .then(() => {
+                navigate('/');
+            })
     }
 
     return (
@@ -64,7 +80,7 @@ export default function Profile({ user, profilePic }) {
                                 <FaUserEdit />
                                 Edit Profile
                             </div>
-                            <div className='logout-container'>
+                            <div className='logout-container' onClick={(e) => { handleLogOut(e) }}>
                                 <FaRightFromBracket />
                                 Log Out
                             </div>
