@@ -23,7 +23,7 @@ function Layout() {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="app-div-container">
       <header className="header">
         {sessionUser && <Navigation />}
       </header>
@@ -32,7 +32,7 @@ function Layout() {
       </main>
       <footer className="footer">
       </footer>
-    </>
+    </div>
   )
 }
 

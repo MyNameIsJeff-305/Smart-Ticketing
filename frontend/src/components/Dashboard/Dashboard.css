@@ -8,4 +8,5 @@ main {
     background-image: none;
     background-color: #212529;
     color: white;
+    border-radius: 10px;
 }
